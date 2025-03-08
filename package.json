@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js"
+    "dev": "webpack serve --config webpack.config.js --open"
   },
   "keywords": [],
   "author": "Brad Spurrell",
@@ -13,5 +13,10 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongoose": "^8.11.0"
+  },
+  "devDependencies": {
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0"
   }
 }
