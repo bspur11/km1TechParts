@@ -1,11 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>km1_app</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Operations with MongoDB</title>
 </head>
 <body>
-  
+    <h1>Inventory Management</h1>
+
+    <!-- Form to Add New Item -->
+    <h3>Add Item</h3>
+    <form id="addItemForm">
+        <input type="number" id="itemId" placeholder="ID" required />
+        <input type="text" id="itemName" placeholder="Name" required />
+        <input type="text" id="itemDescription" placeholder="Description" required />
+        <input type="number" id="itemDateReceived" placeholder="Date Received (YYYYMMDD)" required />
+        <input type="number" id="itemStockQuantity" placeholder="Stock Quantity" required />
+        <button type="submit">Add Item</button>
+    </form>
+
+    <!-- Buttons to Fetch, Update, and Delete Items -->
+    <button onclick="getItems()">GET Items</button>
+
+    <h3>Update Item</h3>
+    <form id="updateItemForm">
+        <input type="number" id="updateItemId" placeholder="ID" required />
+        <input type="text" id="updateItemName" placeholder="New Name" required />
+        <input type="text" id="updateItemDescription" placeholder="New Description" required />
+        <input type="number" id="updateItemDateReceived" placeholder="New Date Received (YYYYMMDD)" required />
+        <input type="number" id="updateItemStockQuantity" placeholder="New Stock Quantity" required />
+        <button type="submit">Update Item</button>
+    </form>
+
+    <h3>Delete Item</h3>
+    <input type="number" id="deleteItemId" placeholder="ID to Delete" required />
+    <button onclick="deleteItem()">Delete Item</button>
+
+    <!-- Display List of Items -->
+    <h2>Items List</h2>
+    <ul id="itemsList"></ul>
+
+    <script src="script.js"></script>
 </body>
 </html>

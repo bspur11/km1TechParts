@@ -4,7 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "webpack build",
+    "build": "webpack --config webpack.config.js",
     "dev": "webpack serve --config webpack.config.js --open",
     "server": "node server.js",
     "mongo": "mongod",
