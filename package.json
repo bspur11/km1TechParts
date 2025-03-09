@@ -2,8 +2,13 @@
   "name": "km1_app",
   "version": "1.0.0",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "dev": "webpack serve --config webpack.config.js --open"
+    "build": "webpack build",
+    "dev": "webpack serve --config webpack.config.js --open",
+    "server": "node server.js",
+    "mongo": "mongod",
+    "start-all": "concurrently \"npm run dev\" \"npm run server\" \"npm run mongo\""
   },
   "keywords": [],
   "author": "Brad Spurrell",
@@ -15,6 +20,11 @@
     "mongoose": "^8.11.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.26.9",
+    "@babel/preset-env": "^7.26.9",
+    "babel-loader": "^10.0.0",
+    "concurrently": "^9.1.2",
+    "html-webpack-plugin": "^5.6.3",
     "webpack": "^5.98.0",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.0"
