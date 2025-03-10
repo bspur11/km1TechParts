@@ -1,10 +1,20 @@
 import express from 'express';
+import cors from 'cors';
 import mongoose from 'mongoose';
 import Item from './models/items.js';
 
 // Create an Express App
 const app = express();
+
 app.use(express.json()); //middleware to parse Json
+
+app.use(
+  cors({
+    origin: 'http://localhost:8080', // Allow only Webpack frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow CRUD operations
+    allowedHeaders: ['Content-Type'], // Allow JSON data
+  })
+);
 
 // Connect to MongoDB
 mongoose
