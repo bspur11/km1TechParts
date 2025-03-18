@@ -31,7 +31,7 @@
         placeholder="Stock Quantity"
         required
       />
-      <button type="submit">Add Item</button>
+      <button id="addItemForm">Add Item</button>
     </form>
 
     <!-- Buttons to Fetch, Update, and Delete Items -->
@@ -59,7 +59,8 @@
         placeholder="New Stock Quantity"
         required
       />
-      <button type="submit">Update Item</button>
+      <button type="submit">Update Item</button> <!-- ✅ No ID needed -->
+
     </form>
 
     <h3>Delete Item</h3>
@@ -69,7 +70,7 @@
       placeholder="ID to Delete"
       required
     />
-    <button onclick="deleteItem()">Delete Item</button>
+    <button id="deleteItemBtn">Delete Item</button>
 
     <!-- Display List of Items -->
     <h2>Items List</h2>

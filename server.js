@@ -41,9 +41,10 @@ app.post('/items', async (req, res) => {
       id: req.body.id,
       name: req.body.name,
       description: req.body.description,
-      dateRecieved: req.body.dateRecieved,
+      dateReceived: req.body.dateReceived,
       stockQuantity: req.body.stockQuantity,
     });
+    console.log(newItem);
 
     await newItem.save();
     res.status(201).json(newItem);
@@ -54,20 +55,16 @@ app.post('/items', async (req, res) => {
 app.put('/items/:id', async (req, res) => {
   try {
     const updatedItem = await Item.findOneAndUpdate(
-      { id: req.params.id }, //find by custom id instead of MongoId
-      {
-        name: req.body.name,
-        description: req.body.description,
-        dateRecieved: req.body.dateRecieved,
-        stockQuantity: req.body.stockQuantity,
-      },
+      { id: req.params.id }, // Find by ID
+      req.body, // ✅ Automatically updates only the provided fields
       { new: true }
     );
 
     if (!updatedItem) {
-      return res.status(404).json(error, 'Item not found!');
+      return res.status(404).json({ error: 'Item not found!' }); // ✅ Use an object instead
     }
 
+    console.log(updatedItem);
     res.json(updatedItem);
   } catch (err) {
     res.status(400).json({ error: 'Error updating item!' });

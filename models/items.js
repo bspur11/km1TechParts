@@ -4,7 +4,7 @@ const itemSchema = new mongoose.Schema({
   id: Number,
   name: String,
   description: String,
-  dateRecieved: Number,
+  dateReceived: Number,
   stockQuantity: Number,
 });
 

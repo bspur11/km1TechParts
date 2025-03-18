@@ -15,7 +15,7 @@ export default {
     topLevelAwait: true, //Allows top-level await in Webpack builds
   },
 
-  entry: './src/script.js',
+  entry: ['./src/script.js', './src/name.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
@@ -36,6 +36,13 @@ export default {
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html',
+      chunks: ['index'],
+    }),
+
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      filename: 'name.html',
+      chunks: ['name'],
     }),
   ],
 };
