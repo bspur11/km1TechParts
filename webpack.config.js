@@ -15,10 +15,14 @@ export default {
     topLevelAwait: true, //Allows top-level await in Webpack builds
   },
 
-  entry: ['./src/script.js', './src/name.js'],
+  entry: {
+    index: './src/script.js',
+    name: './src/name.js',
+    paperOptions: './src/paperOptions.js',
+  },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
+    filename: '[name].bundle.js',
     clean: true,
   },
   module: {
@@ -40,9 +44,15 @@ export default {
     }),
 
     new HtmlWebpackPlugin({
-      template: './src/index.html',
+      template: './src/name.html',
       filename: 'name.html',
       chunks: ['name'],
+    }),
+
+    new HtmlWebpackPlugin({
+      template: './src/paperOptions.html',
+      filename: 'paperOptions.html',
+      chunks: ['paperOptions'],
     }),
   ],
 };
