@@ -8,11 +8,12 @@
     "dev": "webpack serve --config webpack.config.js --open",
     "server": "node server.js",
     "mongo": "mongod",
-    "start-all": "concurrently \"npm run dev\" \"npm run server\" \"npm run mongo\""
+    "start-all": "concurrently \"npm run dev\" \"npm run server\" \"npm run mongo\"",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "Brad Spurrell",
-  "license": "ISC",
+  "license": "MIT",
   "description": "An application to track parts for the KM1",
   "dependencies": {
     "cors": "^2.8.5",
@@ -29,5 +30,13 @@
     "webpack": "^5.98.0",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bspur11/km1TechParts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bspur11/km1TechParts/issues"
+  },
+  "homepage": "https://github.com/bspur11/km1TechParts#readme"
 }
