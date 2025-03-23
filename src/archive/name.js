@@ -1,4 +1,4 @@
-import EventManager from './eventManager.js';
+import EventManager from '../eventManager.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   const paperBtn = document.getElementById('paper-name');
@@ -9,6 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   EventManager.on('sizeSelected', (data) => {
-    console.log(`Size selected for papeer: ${data.size}`);
+    console.log(`Size selected for paper: ${data.size}`);
   });
 });

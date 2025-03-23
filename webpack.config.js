@@ -10,15 +10,18 @@ export default {
     static: path.resolve(__dirname, 'dist'), //Copies index.html to dist/
     hot: true,
     port: 8080, //Runs Webpack Dev Server on port 8080
+    open: ['landing.html'],
   },
   experiments: {
     topLevelAwait: true, //Allows top-level await in Webpack builds
   },
 
   entry: {
-    index: './src/script.js',
-    name: './src/name.js',
+    landing: './src/landing.js',
+    paperNames: './src/paperNames.js',
     paperOptions: './src/paperOptions.js',
+    calipers: './src/calipers.js',
+    dateReceived: './src/dateReceived',
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -38,15 +41,14 @@ export default {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: 'index.html',
-      chunks: ['index'],
+      template: './src/landing.html',
+      filename: 'landing.html',
+      chunks: 'landing',
     }),
-
     new HtmlWebpackPlugin({
       template: './src/name.html',
       filename: 'name.html',
-      chunks: ['name'],
+      chunks: ['paperNames', 'paperSizes', 'calipers', 'dateReceived'],
     }),
 
     new HtmlWebpackPlugin({
