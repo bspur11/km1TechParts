@@ -1,16 +1,18 @@
 import EventManager from './eventManager.js';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const sizes = ['13x19', '23x29', '23x35', '25x38', '28x40', 'Custom'];
+  const types = ['Gloss', 'Offset', 'Silk', 'Satin', 'Styrene', 'Custom'];
 
-  const sizeContainer = document.getElementById('itemsList');
+  const options = document.getElementById('itemsList');
+  if (!options) return;
 
-  sizes.forEach((size) => {
+  types.forEach((type) => {
     const btn = document.createElement('button');
-    btn.textContent = size;
+    btn.textContent = type;
     btn.addEventListener('click', () => {
-      EventManager.emit('sizeSelected', { size });
+      console.log(`Options Selected: ${type}`);
+      EventManager.emit('sizeSelected', { type });
     });
-    sizeContainer.appendChild(btn);
+    options.appendChild(btn);
   });
 });

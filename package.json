@@ -1,7 +1,7 @@
 {
   "name": "km1_app",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "name.js",
   "type": "module",
   "scripts": {
     "build": "webpack --config webpack.config.js",

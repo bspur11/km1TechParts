@@ -9,8 +9,10 @@ document.addEventListener('DOMContentLoaded', () => {
     'Gloss',
     'Offset',
   ];
+  const list = document.getElementById('paper-name-list');
+  if (!list) return;
 
-  const container = document.getElementById('paper-name-list');
+  list.innerHTML = '';
 
   paperNames.forEach((name) => {
     const btn = document.createElement('button');
@@ -19,8 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.dataset.name = name;
     btn.addEventListener('click', () => {
       console.log(`Paper Selected ${name}`);
-      EventManager.emit('nameSelected', { name });
+      EventManager.emit('paperSelected', { name });
     });
-    container.appendChild(btn);
+    list.appendChild(btn);
   });
 });
