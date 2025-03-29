@@ -1,4 +1,6 @@
 import EventManager from './eventManager.js';
+import './style.css';
+
 document.addEventListener('DOMContentLoaded', () => {
   const list = [
     'Ink Heads',

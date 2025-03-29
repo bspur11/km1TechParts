@@ -1,3 +1,5 @@
+import './style.css';
+
 document.addEventListener('DOMContentLoaded', () => {
   const goTo = (id, page) => {
     const btn = document.getElementById(id);

@@ -1,4 +1,5 @@
 import EventManager from './eventManager.js';
+import './style.css';
 
 document.addEventListener('DOMContentLoaded', () => {
   const supplies = ['Black', 'Cyan', 'Magenta', 'Yellow', 'Add To Supplies'];

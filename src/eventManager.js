@@ -1,23 +1,31 @@
+const listeners = {};
+let state = JSON.parse(localStorage.getItem('appState')) || {}; // 🧠 Store selections as they come in
+
 const EventManager = {
-  events: {},
+  on(event, callback) {
+    if (!listeners[event]) listeners[event] = [];
+    listeners[event].push(callback);
+  },
 
-  on(eventName, handler) {
-    if (!this.events[eventName]) {
-      this.events[eventName] = [];
+  off(event, callback) {
+    if (!listeners[event]) return;
+    listeners[event] = listeners[event].filter((cb) => cb !== callback);
+  },
+
+  emit(event, data) {
+    if (event === 'selectionUpdated') {
+      Object.assign(state, data); // ✅ Store merged selections
+      localStorage.setItem('appState', JSON.stringify(state));
     }
-    this.events[eventName].push(handler);
+
+    if (listeners[event]) {
+      listeners[event].forEach((callback) => callback(data));
+    }
+    console.log('📤 Emitted:', data);
   },
 
-  off(eventName, handler) {
-    if (!this.events[eventName]) return;
-    this.events[eventName] = this.events[eventName].filter(
-      (h) => h !== handler
-    );
-  },
-
-  emit(eventName, payload) {
-    if (!this.events[eventName]) return;
-    this.events[eventName].forEach((handler) => handler(payload));
+  getState() {
+    return state;
   },
 };
 

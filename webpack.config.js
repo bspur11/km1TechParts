@@ -2,6 +2,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default {
@@ -41,6 +42,10 @@ export default {
         use: {
           loader: 'babel-loader',
         },
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
       },
     ],
   },

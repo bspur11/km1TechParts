@@ -1,4 +1,5 @@
 import EventManager from './eventManager.js';
+import './style.css';
 
 document.addEventListener('DOMContentLoaded', () => {
   const paperSizes = [
@@ -17,6 +18,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   sizes.innerHTML = '';
 
+  // Listen for previous inputs
+  const state = EventManager.getState();
+  console.log('Currnet selection state:', state);
+  console.log('📦 Current selection state:', EventManager.getState());
+
   paperSizes.forEach((size) => {
     const btn = document.createElement('button');
     btn.textContent = size;
@@ -24,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.dataset.name = size;
     btn.addEventListener('click', () => {
       console.log(`Size Selected: ${size}`);
-      EventManager.emit('sizeSelected', { size });
+      EventManager.emit('selectionUpdated', { size });
     });
     sizes.appendChild(btn);
   });

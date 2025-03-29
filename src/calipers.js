@@ -1,7 +1,8 @@
 import EventManager from './eventManager.js';
+import './style.css';
 
 document.addEventListener('DOMContentLoaded', () => {
-  const paperCalipers = [
+  const calipers = [
     '80',
     '100',
     '110',
@@ -23,14 +24,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
   list.innerHTML = '';
 
-  paperCalipers.forEach((caliper) => {
+  // Optional: Listen to previous paperName + docket
+  const prevSelections = EventManager.getState();
+  console.log('Previous Selections:', prevSelections);
+  console.log('📦 Current selection state:', EventManager.getState());
+
+  calipers.forEach((caliper) => {
     const item = document.createElement('button');
     item.textContent = caliper;
     item.classList.add('paper-caliper-btn');
     item.dataset.name = caliper;
     item.addEventListener('click', () => {
       console.log(`Caliper Selected: ${caliper}`);
-      EventManager.emit('caliperSelected', { caliper });
+      EventManager.emit('selectionUpdated', { caliper });
+      console.log('📦 After emitting caliper:', EventManager.getState());
+      window.location.href = 'paperSizes.html';
     });
     list.appendChild(item);
   });
