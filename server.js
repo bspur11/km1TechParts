@@ -37,17 +37,10 @@ app.get('/items', async (req, res) => {
 
 app.post('/items', async (req, res) => {
   try {
-    const newItem = new Item({
-      id: req.body.id,
-      name: req.body.name,
-      description: req.body.description,
-      dateReceived: req.body.dateReceived,
-      stockQuantity: req.body.stockQuantity,
-    });
+    const newItem = new Item(req.body);
+    const savedItem = await newItem.save();
+    res.json(savedItem);
     console.log(newItem);
-
-    await newItem.save();
-    res.status(201).json(newItem);
   } catch (err) {
     res.status(400).json({ error: 'Error adding item' });
   }

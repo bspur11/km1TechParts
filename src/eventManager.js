@@ -27,6 +27,11 @@ const EventManager = {
   getState() {
     return state;
   },
+
+  clear() {
+    state = {};
+    localStorage.removeItem('appState');
+  },
 };
 
 export default EventManager;

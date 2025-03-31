@@ -2,7 +2,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default {
@@ -24,6 +23,7 @@ export default {
     paperNames: './src/paperNames.js',
     paperOptions: './src/paperOptions.js',
     calipers: './src/calipers.js',
+    check: './src/check.js',
     dateReceived: './src/dateReceived.js',
     maintenance: './src/maintenance.js',
     supplies: './src/supplies.js',
@@ -70,6 +70,11 @@ export default {
       template: './src/calipers.html',
       filename: 'calipers.html',
       chunks: ['calipers'],
+    }),
+    new HtmlWebpackPlugin({
+      template: './src/check.html',
+      filename: 'check.html',
+      chunks: ['check'],
     }),
     new HtmlWebpackPlugin({
       template: './src/dateReceived.html',

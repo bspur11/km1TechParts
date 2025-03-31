@@ -31,6 +31,8 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       console.log(`Size Selected: ${size}`);
       EventManager.emit('selectionUpdated', { size });
+      console.log('📦 After emitting caliper:', EventManager.getState());
+      window.location.href = 'check.html';
     });
     sizes.appendChild(btn);
   });

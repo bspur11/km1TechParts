@@ -3,10 +3,9 @@ import mongoose from 'mongoose';
 const itemSchema = new mongoose.Schema({
   id: Number,
   docket: Number,
-  name: String,
-  description: String,
-  dateReceived: Number,
-  stockQuantity: Number,
+  paperName: String,
+  caliper: String,
+  size: String,
 });
 
 // create model based on schema

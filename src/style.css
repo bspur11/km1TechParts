@@ -11,6 +11,16 @@ h2 {
   color: #ebf5ee;
 }
 
+ul {
+  margin: 5px;
+  padding: 10px 15px;
+  background-color: #22c0de;
+  color: #ebf5ee;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 button {
   margin: 5px;
   padding: 10px 15px;
