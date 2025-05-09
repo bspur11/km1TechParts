@@ -36,13 +36,13 @@ export function formatDate(isoDate) {
   // Extract individual components
   const dayOfWeek = weekdays[date.getUTCDay()]; // Day of the week (e.g., "Sunday")
   const abrevDate = dayOfWeek.slice(0, 3);
-  console.log(abrevDate);
+
   const month = months[date.getUTCMonth()]; // Month (e.g., "December")
   const abrevMonth = month.slice(0, 3);
   const day = date.getUTCDate(); // Day of the month (e.g., "8")
   const year = date.getUTCFullYear(); // Year (e.g., "2024")
 
-  const abrevYear = year.toString().slice(0, 1); // Get the first character of the year as a string
+  const abrevYear = year.toString().slice(2); // Get the first character of the year as a string
 
   // Format time with AM/PM
   let hours = date.getUTCHours();
@@ -54,7 +54,8 @@ export function formatDate(isoDate) {
   }`;
 
   // Combine everything into a full formatted date string
-  const formattedDate = `${abrevDate}, ${day}_${abrevMonth} , ${abrevYear} at ${formattedTime}`;
+  const formattedDate = `${abrevDate}, ${day}_${abrevMonth}_${year}@${formattedTime}`;
+  console.log(formattedDate);
 
   return formattedDate;
 }

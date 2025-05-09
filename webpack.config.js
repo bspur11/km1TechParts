@@ -62,6 +62,11 @@ export default {
       chunks: ['paperNames'],
     }),
     new HtmlWebpackPlugin({
+      template: './src/paperOptions.html',
+      filename: 'paperOptions.html',
+      chunks: ['paperOptions'],
+    }),
+    new HtmlWebpackPlugin({
       template: './src/paperSizes.html',
       filename: 'paperSizes.html',
       chunks: ['paperSizes'],
@@ -96,10 +101,6 @@ export default {
       filename: 'supplies.html',
       chunks: ['supplies'],
     }),
-    new HtmlWebpackPlugin({
-      template: './src/paperOptions.html',
-      filename: 'paperOptions.html',
-      chunks: ['paperOptions'],
-    }),
+    
   ],
 };

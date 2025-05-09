@@ -19,10 +19,16 @@ document.addEventListener('DOMContentLoaded', () => {
     '24',
   ];
 
+  const types = ['Gloss', 'Offset', 'Silk', 'Satin', 'Styrene', 'Custom'];
+
   const list = document.getElementById('paper-caliper-list');
   if (!list) return;
 
+  const options = document.getElementById('option-type');
+  if (!options) return;
+
   list.innerHTML = '';
+  options.innerHTML = '';
 
   // Optional: Listen to previous paperName + docket
   const prevSelections = EventManager.getState();
@@ -38,8 +44,24 @@ document.addEventListener('DOMContentLoaded', () => {
       console.log(`Caliper Selected: ${caliper}`);
       EventManager.emit('selectionUpdated', { caliper });
       console.log('📦 After emitting caliper:', EventManager.getState());
-      window.location.href = 'paperSizes.html';
     });
     list.appendChild(item);
+    console.log('49: ', item.dataset.name);
+  });
+
+  types.forEach((type) => {
+    const typeBtn = document.createElement('button');
+    typeBtn.textContent = type;
+    typeBtn.classList = 'paper-type-btn';
+    typeBtn.dataset.name = type;
+    typeBtn.addEventListener('click', () => {
+      console.log(`Type Selected: ${type}`);
+      EventManager.emit('selectionUpdated', { type });
+      console.log('📦 After emitting type:', EventManager.getState());
+      window.location.href = 'paperSizes.html';
+    });
+    options.appendChild(typeBtn);
+    const setType = typeBtn.dataset.name;
+    console.log('49: ', setType);
   });
 });

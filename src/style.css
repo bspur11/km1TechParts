@@ -11,7 +11,7 @@ h2 {
   color: #ebf5ee;
 }
 
-ul {
+button {
   margin: 5px;
   padding: 10px 15px;
   background-color: #22c0de;
@@ -21,7 +21,7 @@ ul {
   cursor: pointer;
 }
 
-button {
+.check-btn {
   margin: 5px;
   padding: 10px 15px;
   background-color: #22c0de;
@@ -29,4 +29,15 @@ button {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.time-stamp {
+  color: wheat;
+  background-color: #22c0de;
+  margin: 5px;
+  padding: 10px 15px;
+}
+
+#statusMessage {
+  color: whitesmoke
 }
