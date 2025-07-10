@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     li.textContent = `${key}: ${value}`;
     reviewList.appendChild(li);
-    console.log(key, value);
+    console.log('20', key, value);
   });
   // Save to DB on click
   saveBtn.addEventListener('click', async () => {
@@ -39,19 +39,22 @@ document.addEventListener('DOMContentLoaded', () => {
         timestamp: currentDate, //raw date object
       };
 
+      console.log(`42 Sending to DB:`, itemToSave);
+      console.log('🧾 FINAL itemToSave payload:', itemToSave);
+      console.log('jsonString', JSON.stringify(itemToSave));
       const res = await fetch('http://localhost:3000/items', {
         method: 'POST',
         headers: { 'Content-type': 'application/json' },
         body: JSON.stringify(itemToSave),
       });
       if (!res.ok) {
-        throw new Error(`Server error: ${res.status}`);
+        throw new Error(`Server POST error: ${res.status}`);
       }
 
       const data = await res.json();
       statusMessage.textContent = `Saved! ID: ${data._id || 'unknown'}`;
       console.log('38Saved object', data);
-      console.log('54', data.savedAt);
+      console.log('54', data.caliper);
       EventManager.clear();
     } catch (err) {
       statusMessage.textContent = ` Failed to save: ${err.message}`;

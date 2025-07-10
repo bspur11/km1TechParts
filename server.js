@@ -1,7 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import Item from './models/items.js';
+import itemRoutes from './routes/itemRoutes.js';
+import inkRoutes from './routes/inkRoutes.js';
+import dotenv from 'dotenv';
 
 // Create an Express App
 const app = express();
@@ -16,67 +18,16 @@ app.use(
   })
 );
 
+app.use('/items', itemRoutes);
+app.use('/api/inks', inkRoutes);
+
 // Connect to MongoDB
 mongoose
-  .connect('mongodb://localhost:27017/items', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect('mongodb://localhost:27017/items')
   .then(() => console.log('Connected to MongoDB'))
   .catch((err) => console.error('MongoDB connection error:', err));
 
 // Middleware, Routes, etc.
-app.get('/items', async (req, res) => {
-  try {
-    const items = await Item.find();
-    res.json(items);
-  } catch (err) {
-    res.status(500).json({ error: 'Error fetching items' });
-  }
-});
-
-app.post('/items', async (req, res) => {
-  try {
-    const newItem = new Item(req.body);
-    const savedItem = await newItem.save();
-    res.json(savedItem);
-    console.log(newItem);
-  } catch (err) {
-    res.status(400).json({ error: 'Error adding item' });
-  }
-});
-app.put('/items/:id', async (req, res) => {
-  try {
-    const updatedItem = await Item.findOneAndUpdate(
-      { id: req.params.id }, // Find by ID
-      req.body, // ✅ Automatically updates only the provided fields
-      { new: true }
-    );
-
-    if (!updatedItem) {
-      return res.status(404).json({ error: 'Item not found!' }); // ✅ Use an object instead
-    }
-
-    console.log(updatedItem);
-    res.json(updatedItem);
-  } catch (err) {
-    res.status(400).json({ error: 'Error updating item!' });
-  }
-});
-
-app.delete('/items/:id', async (req, res) => {
-  try {
-    const deleteItem = await Item.findOneAndDelete({ id: req.params.id });
-
-    if (!deleteItem) {
-      return res.status(404).json({ error: 'Item not found' });
-    }
-
-    res.json({ message: 'Item deleted successfully!' });
-  } catch (err) {
-    res.status(400).json({ error: 'Error deleting Item!' });
-  }
-});
 
 // Start the server
 const PORT = process.env.PORT || 3000;

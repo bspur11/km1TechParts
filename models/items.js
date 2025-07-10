@@ -2,13 +2,12 @@ import mongoose from 'mongoose';
 
 const itemSchema = new mongoose.Schema(
   {
-    id: Number,
-    docket: Number,
+    docketNumber: { type: Number, unique: true },
     paperName: String,
     type: String,
     caliper: String,
     size: String,
-    count: Number,
+    count: { type: Number, default: 0 },
     savedAt: String, // human-readable string
   },
   { timestamps: true }

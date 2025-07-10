@@ -101,6 +101,10 @@ export default {
       filename: 'supplies.html',
       chunks: ['supplies'],
     }),
-    
+    new HtmlWebpackPlugin({
+      template: './src/inks.html',
+      filename: 'ink.html',
+      chunks: ['ink'],
+    }),
   ],
 };

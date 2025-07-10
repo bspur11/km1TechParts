@@ -1,10 +1,10 @@
-const apiUrl = 'http://localhost:3000/items';
+const apiUrl = 'http://localhost:3000/api/inks';
 let cache = null;
 export function clearCache() {
   cache = null;
 }
 
-export async function getItems(forceRefresh = false) {
+export async function getInks(forceRefresh = false) {
   if (cache && !forceRefresh) {
     return cache;
   }
@@ -17,12 +17,12 @@ export async function getItems(forceRefresh = false) {
     cache = data;
     return data;
   } catch (err) {
-    console.error('Failed to fetch items!', err.message);
+    console.error('Failed to fetch inks!', err.message);
     return cache || [];
   }
 }
 
-export async function addItem(item, forceRefresh = false) {
+export async function addInk(ink, forceRefresh = false) {
   if (cache && !forceRefresh) {
     return cache;
   }
@@ -31,20 +31,20 @@ export async function addItem(item, forceRefresh = false) {
     const res = await fetch(apiUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(item),
+      body: JSON.strigify(ink),
     });
     if (!res.ok) {
       throw new Error(`Error ${res.status}: ${res.statusText}`);
     }
     if (forceRefresh) {
-      cache = await getItems(true);
+      cache = await getInks(true);
     }
   } catch (err) {
     console.log('Failed to POST!');
   }
 }
 
-export async function updateItem(id, updatedItem, forceRefresh = false) {
+export async function updateInk(id, updatedItem, forceRefresh = false) {
   try {
     const res = await fetch(`${apiUrl}/${id}`, {
       method: 'PUT',
@@ -55,14 +55,14 @@ export async function updateItem(id, updatedItem, forceRefresh = false) {
       throw new Error(`Error ${res.status}: ${res.statusText}`);
     }
     if (forceRefresh) {
-      cache = await getItems(true);
+      cache = await getInks(true);
     }
   } catch (err) {
     console.log(`Failed to update item!`, err.message);
   }
 }
 
-export async function deleteItem(id, forceRefresh = false) {
+export async function deleteInk(id, forceRefresh = false) {
   try {
     const res = await fetch(`${apiUrl}/${id}`, {
       method: 'DELETE',
@@ -71,11 +71,11 @@ export async function deleteItem(id, forceRefresh = false) {
       throw new Error(`Error: ${res.status}: ${res.statusText}`);
     }
     if (forceRefresh) {
-      cache = await getItems(true);
+      cache = await getInks(true);
     }
     return true;
   } catch (err) {
-    console.log('Error: Post not deleted!', err.message);
+    console.log('Error: Failed to delete Ink!', err.message);
     return false;
   }
 }

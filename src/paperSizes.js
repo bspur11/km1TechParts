@@ -1,6 +1,7 @@
 import EventManager from './eventManager.js';
 import './style.css';
 import { formatDate } from './date.js';
+import { createModal } from './modal.js';
 
 const currentDate = new Date();
 const formattedCurrentDate = formatDate(currentDate);
@@ -35,21 +36,29 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       console.log(`Size Selected: ${size}`);
       // Prompt for Count #
-      let count;
-      while (true) {
-        const input = prompt(`Enter Sheet Count for ${size}!`);
-        if (input === null) return; // user cancelled
-        count = Number(input.trim());
-        if (!isNaN(count) && input.trim() !== '') break;
-        alert('❌ Please enter a valid number!');
-      }
+
+      createModal({
+        message: `Enter Sheet Count for ${size}`,
+        placeholder: 'e.g. 1000',
+        onConfirm: (inputValue) => {
+          const count = Number(inputValue);
+          if (!isNaN(count)) {
+            const previousState = EventManager.getState();
+            EventManager.emit('selectionUpdated', {
+              ...previousState,
+              size,
+              count,
+            });
+            console.log('After emitting size/count:', EventManager.getState());
+            window.location.href = 'check.html';
+          } else {
+            alert('❌ Please enter a valid number!');
+          }
+        },
+      });
 
       console.log(`${size} was selected `, formattedCurrentDate);
       console.log(currentDate);
-
-      EventManager.emit('selectionUpdated', { size, count });
-      console.log('📦 After emitting caliper:', EventManager.getState());
-      window.location.href = 'check.html';
     });
     sizes.appendChild(btn);
   });

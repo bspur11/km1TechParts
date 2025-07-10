@@ -36,17 +36,22 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log('📦 Current selection state:', EventManager.getState());
 
   calipers.forEach((caliper) => {
+    console.log(`calforE`, Number(caliper))
     const item = document.createElement('button');
     item.textContent = caliper;
+    
     item.classList.add('paper-caliper-btn');
     item.dataset.name = caliper;
     item.addEventListener('click', () => {
+      const previousState = EventManager.getState();
       console.log(`Caliper Selected: ${caliper}`);
-      EventManager.emit('selectionUpdated', { caliper });
+
+      console.log('cal48', Number(caliper));
+
+      EventManager.emit('selectionUpdated', { ...previousState, caliper });
       console.log('📦 After emitting caliper:', EventManager.getState());
     });
     list.appendChild(item);
-    console.log('49: ', item.dataset.name);
   });
 
   types.forEach((type) => {
@@ -55,13 +60,12 @@ document.addEventListener('DOMContentLoaded', () => {
     typeBtn.classList = 'paper-type-btn';
     typeBtn.dataset.name = type;
     typeBtn.addEventListener('click', () => {
-      console.log(`Type Selected: ${type}`);
-      EventManager.emit('selectionUpdated', { type });
-      console.log('📦 After emitting type:', EventManager.getState());
+      const previousState = EventManager.getState();
+      EventManager.emit('selectionUpdated', { ...previousState, type });
+      console.log('📦 61 After emitting type:', EventManager.getState());
       window.location.href = 'paperSizes.html';
     });
     options.appendChild(typeBtn);
     const setType = typeBtn.dataset.name;
-    console.log('49: ', setType);
   });
 });

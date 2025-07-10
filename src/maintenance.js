@@ -1,5 +1,10 @@
 import EventManager from './eventManager.js';
 import './style.css';
+import { formatDate } from './date.js';
+import { createModal } from './modal.js';
+
+const currentDate = new Date();
+const formattedCurrentDate = formatDate(currentDate);
 
 document.addEventListener('DOMContentLoaded', () => {
   const list = [
